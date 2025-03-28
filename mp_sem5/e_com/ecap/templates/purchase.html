@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Purchase</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <style>
+            <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    font-family: Arial, sans-serif;
+                }
+        
+                .container {
+                    display: flex;
+                    height: 100vh;
+                }
+        
+                .product-image {
+                    flex: 1;
+                }
+        
+                .product-details {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    padding: 40px;
+                    background-color: #f9f9f9;
+                }
+        
+                .product-details h1 {
+                    font-size: 40px;
+                    margin-bottom: 15px;
+                }
+        
+                .product-details p {
+                    font-size: 20px;
+                    margin-bottom: 10px;
+                    color: black;
+                }
+        
+                .price {
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: #e74c3c;
+                    margin-bottom: 20px;
+                }
+                .button-container {
+                    display: flex;
+                    gap: 15px; /* Space between buttons */
+                    margin-top: 20px;
+                }
+                
+                .button-container button {
+                    padding: 12px 20px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    transition: 0.3s ease-in-out;
+                    text-transform: uppercase;
+                }
+                .add-to-cart {
+                    background-color: #f39c12; /* Orange */
+                    color: white;
+                }
+                .add-to-cart:hover {
+                    background-color: #e67e22; /* Darker Orange */
+                }
+                .buy-now {
+                    background-color: #e74c3c; /* Red */
+                    color: white;
+                }
+                
+                .buy-now:hover {
+                    background-color: #c0392b; /* Darker Red */
+                }
+                
+                @media (max-width: 768px) {
+                    .container {
+                        flex-direction: column;
+                    }
+                    .product-image {
+                        height: 50vh;
+                    }
+                    .product-details {
+                        height: 50vh;
+                        padding: 20px;
+                    }
+                }
+                .offer
+                {
+
+                }
+                .offer p:nth-child(1) 
+                {
+                    font-size:15px;
+                    color:red;
+                }
+                .offer p
+                {
+                    font-size:18px;
+                    color:black;
+                }
+                .title
+                {
+                    font-size:20px;
+                    color:black;
+                }
+            </style>
+    </head>
+    <body>
+{% block content %}
+<div class="container">
+    <div class="product-image">
+        <img src="{% static 'products/'%}{{ product.prod_id }}.jpg" alt="no foto">
+        <div class="button-container">  
+            <button class="add-to-cart">ADD TO CART</button>
+            <a href="{% url 'purchase' product.id %}"><button class="buy-now">BUY NOW</button></a>
+        </div>
+    </div>
+    <div class="product-details">
+        <h1>{{ product.prod_name }}</h1>
+        <p>Price: ₹{{ product.prod_price}}</p>
+        <p>Gstp: {{ product.prod_gstp }}%(₹{{ product.prod_gstr }})</p>  
+        <p class="price">Tprice: ₹{{ product.tprice }}</p>
+        <p>In Stock: {{ product.prod_qun }}</p>
+        <div class="offer">
+         <p>Hurry, Only a few left!</p>
+            <h2 class="title">Available offers</h2>
+            
+            <p>Special PriceGet extra 24% off (price inclusive of cashback/coupon)T&C</p>
+            
+            <p>Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C</p>
+            
+            <p>Bank OfferFlat ₹500 off on RuPay Credit Card EMI Transactions, on orders of ₹15,000 and aboveT&C</p>
+            
+            <p>Bank Offer10% off up to ₹1,200 on HDFC Bank Credit Card EMI on 6 and 9 months tenure. Min Txn Value: ₹5000T&C</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+    </body>
+</html>

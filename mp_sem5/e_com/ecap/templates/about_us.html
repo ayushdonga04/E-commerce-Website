@@ -1,0 +1,128 @@
+{% load static %}
+
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="{% static 'style.css' %}">
+
+      <title>About_Us Page</title>
+   </head>
+   <body>
+      <!--==================== HEADER ====================-->
+      <header class="header" id="header">
+         <nav class="nav container">
+            <a href="#" class="nav__logo">Tech Tonic</a>
+
+            <div class="nav__menu" id="nav-menu">
+               <ul class="nav__list">
+                  <li class="nav__item">
+                     <a href="/home" class="nav__link">home</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="/product" class="nav__link">product</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="/about_us" class="nav__link">About Us</a>
+                  </li>
+
+
+                  <li class="nav__item">
+                     <a href="/contact" class="nav__link">Contact</a>
+                  </li>
+                  {% if user.is_authenticated and user.is_superuser%}
+                  <li class="nav__item">
+                     <a href="/about_us" class="nav__link">Vendor</a>
+                  </li> 
+   
+                  <li class="nav__item">
+                     <a href="/sell" class="nav__link">sell</a>
+                  </li>
+                  {% endif %}
+               </ul>
+
+               <!-- Close button -->
+               <div class="nav__close" id="nav-close">
+                  <i class="ri-close-line"></i>
+               </div>
+            </div>
+
+            <div class="nav__actions">
+         
+
+               <!-- Login button -->
+               <i class="ri-user-line nav__login" id="login-btn"></i>
+
+               <!-- Toggle button -->
+               <div class="nav__toggle" id="nav-toggle">
+                  <i class="ri-menu-line"></i>
+               </div>
+            </div>
+         </nav>
+      </header>
+
+      <!--==================== LOGIN ====================-->
+      <div class="login" id="login">
+      <form action="{% url 'logout' %}" class="login__form">
+            <h1>User Details</h1>
+            <p>Username: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+            <button type="submit">Logout</button>
+         </form>
+         </form>
+
+         <i class="ri-close-line login__close" id="login-close"></i>
+      </div>
+      
+      <!--=============== MAIN JS ===============-->
+      <script src="{% static 'main.js' %}"></script>
+   <br><br><br><br><br><br><br><br>
+        <section class="intro">
+            <h1>About Us</h1>
+            <p>Welcome to our company! We are dedicated to delivering the best services to our clients and 
+               we are also belive in euallity.we have also best offers in our different seasons sells.we 
+               from latest trend gadgets to essential accessories,our curated selection is designed to needs
+               of our customers.we also belive in empowering you with the tools to stay connected.productive,
+               and ahed in today's fast-paced world.Join us our journey to bring the future of electroins to 
+               your fingertips.
+            </p>
+        </section>
+        <section class="team">
+            <h2>Our Team</h2>
+            <div class="team-member">
+                <h3>Naman Joshi</h3>
+                <img src="{% static 'images/ceo.jpg'%}",alt="no foto",width=100px,height="200px"></img>
+                <h4 class="post">CEO</h4>
+                <p class="cont">Naman Joshi is a CEO of our Company,who is leads our company and team with over 20 years of experience in the industry and that is 
+                    satisfaction.our joueney is begin with a vision  of customer satisfaction is a key of our sucess.
+                    he is leading company to making a meaningful impact in the industrial zone.oue CEO is also look 
+                    continue our company's journy with our value customers.
+                </p>
+            </div>
+            <div class="team-member">
+                <h3>Karan Desai</h3>
+                <img src="{% static 'images/cto.jpg'%}",alt="no foto",width=100px,height="200px"></img>
+                <h5 class="post">CTO</h5>
+                <p class="cont">Karan Desai is a CTO of our Company,who is our tech wizard, ensuring we stay ahead withthe latest
+                     technology.He is also Resposible for the development and impletation of the technical 
+                     strategies of our company that meets our vision or evolving needs of our customers.   
+                </p>
+            </div>
+            <!-- Add more team members as needed -->
+        </section>
+
+        <section class="mission">
+            <h2>Our Mission</h2>
+            <p>Our mission is to provide exceptional service and create long-lasting relationships with our clients.</p>
+        </section>
+
+    </body>
+    </html>

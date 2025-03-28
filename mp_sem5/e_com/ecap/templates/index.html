@@ -1,0 +1,59 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regestration</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"], input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav container">
+           <a href="#" class="nav__logo">Tech Tonic</a>
+           </div>
+        </nav>
+     </header>
+    <br><br><br>
+    <div class="regest-container">
+        <h1>Regestration</h1>
+        <form action="" method="post" class="contact-form">  
+            {% csrf_token %} 
+            <label>User Name:</label>
+            <input type="name" id="uname" name="uname" required>
+
+            <label>Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label>password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label>password:</label>
+            <input type="password" id="password" name="password1" required>
+
+            <button type="submit">Register</button>
+            <p>Have you an account? <a href="/lg" class="decorate">Login</a></p>
+        </form>
+
+
+
+
+</body>
+</html>

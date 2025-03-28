@@ -1,0 +1,162 @@
+{% load static %}
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="{% static 'style.css' %}">
+
+      <title>Sell Page</title>
+      <style>
+         table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        thead {
+            background-color: #007BFF;
+            color: white;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        th {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        @media (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+        }
+      </style>
+   </head>
+   <body>
+      <!--==================== HEADER ====================-->
+      <header class="header" id="header">
+         <nav class="nav container">
+            <a href="#" class="nav__logo">Tech Tonic</a>
+
+            <div class="nav__menu" id="nav-menu">
+               <ul class="nav__list">
+                  <li class="nav__item">
+                     <a href="/home" class="nav__link">home</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="/product" class="nav__link">product</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="/about_us" class="nav__link">About Us</a>
+                  </li>
+
+
+                  <li class="nav__item">
+                     <a href="/contact" class="nav__link">Contact</a>
+                  </li>
+
+                  {% if user.is_authenticated and user.is_superuser%}
+                  <li class="nav__item">
+                     <a href="/vendor" class="nav__link">Vendor</a>
+                  </li> 
+   
+                  <li class="nav__item">
+                     <a href="/sell" class="nav__link">sell</a>
+                  </li>
+                  {% endif %}
+               </ul>
+
+               <!-- Close button -->
+               <div class="nav__close" id="nav-close">
+                  <i class="ri-close-line"></i>
+               </div>
+            </div>
+
+            <div class="nav__actions">
+         
+
+               <!-- Login button -->
+               <i class="ri-user-line nav__login" id="login-btn"></i>
+
+               <!-- Toggle button -->
+               <div class="nav__toggle" id="nav-toggle">
+                  <i class="ri-menu-line"></i>
+               </div>
+            </div>
+         </nav>
+      </header>
+
+      <!--==================== LOGIN ====================-->
+      <div class="login" id="login">
+         <form action="{% url 'logout' %}" class="login__form">
+            <h1>User Details</h1>
+            <p>Username: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+            <button type="submit">Logout</button>
+         </form>
+         
+
+         <i class="ri-close-line login__close" id="login-close"></i>
+      </div>
+      
+      <!--=============== MAIN JS ===============-->
+      <script src="{% static 'main.js' %}"></script>
+
+   <br><br><br><br><br><br>
+       <h1 align="center">  Selling List  </h1>
+    <br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Bill No</th>
+                <th>Customer Name</th>
+                <th>Customer Address</th>
+                <th>Phone Number</th>
+                <th>Sale Date</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>GST %</th>
+                <th>GST Amount</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in sales %}
+            <tr>
+                <td>{{ sale.bill_no }}</td>
+                <td>{{ sale.customer_name }}</td>
+                <td>{{ sale.customer_address }}</td>
+                <td>{{ sale.phone_number }}</td>
+                <td>{{ sale.sale_date }}</td>
+                <td>{{ sale.product_name }}</td>
+                <td>{{ sale.quantity }}</td>
+                <td>{{ sale.price }}</td>
+                <td>{{ sale.gst_percentage }}</td>
+                <td>{{ sale.gst_amount }}</td>
+                <td>{{ sale.total_amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

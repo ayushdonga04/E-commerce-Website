@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="{% static 'style.css' %}">
+
+      <title>Home Page</title>
+      <style>
+         .title
+         {
+            font-size:30px;
+            font-style:bold;
+            margin:220px;
+            text-align:center;
+         }
+      </style>
+   </head>
+   <body>
+      <!--==================== HEADER ====================-->
+      <header class="header" id="header">
+         <nav class="nav container">
+            <a href="#" class="nav__logo">Tech Tonic</a>
+
+            <div class="nav__menu" id="nav-menu">
+               <ul class="nav__list">
+                  <li class="nav__item">
+                     <a href="/home" class="nav__link">home</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="/product" class="nav__link">product</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="/about_us" class="nav__link">About Us</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="/contact" class="nav__link">Contact</a>
+                  </li>
+
+                  {% if user.is_authenticated and user.is_superuser%}
+                  <li class="nav__item">
+                     <a href="/vendor" class="nav__link">Vendor</a>
+                  </li> 
+   
+                  <li class="nav__item">
+                     <a href="/sell" class="nav__link">sell</a>
+                  </li>
+                  {% endif %}
+               </ul>
+
+               <!-- Close button -->
+               <div class="nav__close" id="nav-close">
+                  <i class="ri-close-line"></i>
+               </div>
+            </div>
+
+            <div class="nav__actions">
+         
+
+               <!-- Login button -->
+               <i class="ri-user-line nav__login" id="login-btn"></i>
+
+               <!-- Toggle button -->
+               <div class="nav__toggle" id="nav-toggle">
+                  <i class="ri-menu-line"></i>
+               </div>
+            </div>
+         </nav>
+      </header>
+
+      <!--==================== LOGIN ====================-->
+      <div class="login" id="login">
+         <form action="{% url 'logout' %}" class="login__form">
+            <h1>User Details</h1>
+            <p>Username: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+            <button type="submit">Logout</button>
+         </form>
+         
+
+         <i class="ri-close-line login__close" id="login-close" ></i>
+      </div>
+      <br><br><br>
+      <div class="title">
+         <h1>Welcome To Tech Tonic</h1>
+      </div>
+      <!--=============== MAIN JS ===============-->
+      <script src="{% static 'main.js' %}"></script>
+   </body>
+</html>
